@@ -1,6 +1,3 @@
-var intervalId;
-var menu;
-
 function addCheckboxesToConversationItems() {
     const conversationItems = document.querySelectorAll('mws-conversation-list-item');
 
@@ -12,28 +9,64 @@ function addCheckboxesToConversationItems() {
     });
 }
 
+function selectAllCheckboxes() {
+    const checkboxes = document.querySelectorAll('mws-conversation-list-item input[type="checkbox"]');
+    checkboxes.forEach(checkbox => {
+        checkbox.checked = true;
+    });
+}
+
 function confirmDelete() {
-	document.querySelector('.mdc-button.mat-mdc-button.primary-button.action-button.txt-button.mat-primary').click();
+    const deleteButton = document.querySelector('.mdc-button.mat-mdc-button.primary-button.action-button.txt-button.mat-primary');
+    if (deleteButton) {
+        deleteButton.click();
+    } else {
+        console.error("Delete button not found!");
+    }
 }
 
 function clickDelete() {
-	document.querySelectorAll('button.mat-mdc-menu-item')[2].click();
-	setTimeout(confirmDelete, 100);
+    const deleteMenuItem = document.querySelectorAll('button.mat-mdc-menu-item')[2];
+    if (deleteMenuItem) {
+        deleteMenuItem.click();
+        setTimeout(confirmDelete, 100);
+    } else {
+        console.error("Delete menu item not found!");
+    }
 }
 
-function deleteSMS() {
-	menu = document.querySelectorAll('button.menu-button');
-	if(menu.length) {
-		menu[0].click();
-		setTimeout(clickDelete, 100);
-	}
-	else {
-		clearInterval(intervalId);
-		console.log('script stopped');
-	}
+function deleteConversationItem(conversationItem) {
+    if (conversationItem) {
+        conversationItem.click();
+        setTimeout(clickDelete, 100);
+    } else {
+        console.error("Conversation item not found!");
+    }
 }
 
-function startScript() {
-	console.log('script started');
-	intervalId = setInterval(deleteSMS, 2000);
+let conversationItems;
+let intervalId;
+let index;
+
+function deleteSelectedConversationItems() {
+    conversationItems = Array.from(document.querySelectorAll('button.menu-button')).filter(conversationItem => {
+        return conversationItem.parentElement.parentElement.parentElement.parentElement.children[1].checked === true;
+    });
+
+    if (conversationItems.length) {
+        console.log('Script started');
+        index = 0;
+        intervalId = setInterval(deleteNextConversationItem, 2000);
+    } else {
+        console.log('No conversation items selected for deletion.');
+    }
+}
+
+function deleteNextConversationItem() {
+    if (index < conversationItems.length) {
+        deleteConversationItem(conversationItems[index++]);
+    } else {
+        clearInterval(intervalId);
+        console.log('Script stopped');
+    }
 }
