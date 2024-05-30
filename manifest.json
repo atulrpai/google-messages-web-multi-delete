@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Google Messages Web Multi-Delete",
   "version": "1.0",
-  "permissions": [ "activeTab" ],
+  "permissions": [ "tabs", "scripting", "activeTab" ],
   "host_permissions": [ "https://messages.google.com/*" ],
   "action": {
     "default_popup": "popup.html",
@@ -19,6 +19,6 @@
   },
   "background": {
     "service_worker": "background.js"
-  },
+  }
 }
 

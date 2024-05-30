@@ -1,39 +1,27 @@
 document.addEventListener('DOMContentLoaded', function () {
 
-	document.getElementById("createCheckBoxBtn").addEventListener("click", async () => {
-	    let [tab] = await chrome.tabs.query({active: true, currentWindow: true});
-	    await chrome.scripting.executeScript({
-		target: {tabId: tab.id},
-		function: addCheckboxesToConversationItems
-	    });
+	document.getElementById("createCheckBoxBtn").addEventListener("click", () => {
+		chrome.tabs.query( { active: true, currentWindow: true }, (tabs) => { 
+			chrome.tabs.sendMessage( tabs[0].id, {
+				message: "addCheckboxesToConversationItems"
+			});
+		});
 	});
 
-	document.getElementById("selectAllBtn").addEventListener("click", async () => {
-	    let [tab] = await chrome.tabs.query({active: true, currentWindow: true});
-	    await chrome.scripting.executeScript({
-		target: {tabId: tab.id},
-		function: selectAllCheckboxes
-	    });
+	document.getElementById("selectAllBtn").addEventListener("click", () => {
+		chrome.tabs.query( { active: true, currentWindow: true }, (tabs) => { 
+			chrome.tabs.sendMessage( tabs[0].id, {
+				message: "selectAllCheckboxes"
+			});
+		});
 	});
 
-	document.getElementById("deleteSelectedBtn").addEventListener("click", async () => {
-	    let [tab] = await chrome.tabs.query({active: true, currentWindow: true});
-	    await chrome.scripting.executeScript({
-		target: {tabId: tab.id},
-		function: deleteSelectedConversationItems
-	    });
+	document.getElementById("deleteSelectedBtn").addEventListener("click", () => {
+		chrome.tabs.query( { active: true, currentWindow: true }, (tabs) => { 
+			chrome.tabs.sendMessage( tabs[0].id, {
+				message: "deleteSelectedConversationItems"
+			});
+		});
 	});
 
 });
-
-function createCheckBox() {
-    // Write your logic to create checkboxes here
-}
-
-function selectAll() {
-    // Write your logic to select all checkboxes here
-}
-
-function deleteSelected() {
-    // Write your logic to delete selected checkboxes here
-}

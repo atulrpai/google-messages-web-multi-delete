@@ -1,7 +1,5 @@
 function addCheckboxesToConversationItems() {
-    const conversationItems = document.querySelectorAll('mws-conversation-list-item');
-
-    conversationItems.forEach(item => {
+    document.querySelectorAll('mws-conversation-list-item').forEach(item => {
         const checkbox = document.createElement('input');
         checkbox.type = 'checkbox';
         checkbox.className = 'conversation-checkbox';
@@ -10,8 +8,7 @@ function addCheckboxesToConversationItems() {
 }
 
 function selectAllCheckboxes() {
-    const checkboxes = document.querySelectorAll('mws-conversation-list-item input[type="checkbox"]');
-    checkboxes.forEach(checkbox => {
+    document.querySelectorAll('mws-conversation-list-item input[type="checkbox"]').forEach(checkbox => {
         checkbox.checked = true;
     });
 }
@@ -44,9 +41,7 @@ function deleteConversationItem(conversationItem) {
     }
 }
 
-let conversationItems;
-let intervalId;
-let index;
+let conversationItems, intervalId, index;
 
 function deleteSelectedConversationItems() {
     conversationItems = Array.from(document.querySelectorAll('button.menu-button')).filter(conversationItem => {
@@ -70,3 +65,19 @@ function deleteNextConversationItem() {
         console.log('Script stopped');
     }
 }
+
+chrome.runtime.onMessage.addListener( (request, sender, sendResponse) => {
+	switch(request.message) {
+		case "addCheckboxesToConversationItems" :
+		addCheckboxesToConversationItems();
+		break;
+
+		case "selectAllCheckboxes" :
+		selectAllCheckboxes();
+		break;
+
+		case "deleteSelectedConversationItems" :
+		deleteSelectedConversationItems();
+		break;
+	}
+});
