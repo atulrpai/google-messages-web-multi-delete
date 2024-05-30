@@ -41,7 +41,7 @@ function deleteConversationItem(conversationItem) {
     }
 }
 
-let conversationItems, intervalId, index;
+var conversationItems, intervalId, index;
 
 function deleteSelectedConversationItems() {
     conversationItems = Array.from(document.querySelectorAll('button.menu-button')).filter(conversationItem => {
