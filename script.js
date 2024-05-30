@@ -51,7 +51,7 @@ function deleteSelectedConversationItems() {
     if (conversationItems.length) {
         console.log('Script started');
         index = 0;
-        intervalId = setInterval(deleteNextConversationItem, 2000);
+        intervalId = setInterval(deleteNextConversationItem, 250);
     } else {
         console.log('No conversation items selected for deletion.');
     }
