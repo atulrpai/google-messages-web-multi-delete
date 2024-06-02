@@ -26,7 +26,7 @@ To install the extension, follow these steps :
 2. Click on the extension icon in the toolbar to open the popup
 3. Use the buttons in the popup to perform the desired actions
 
-![](demo.gif)
+![](assets/images/demo.gif)
 
 ## Contributing
 
