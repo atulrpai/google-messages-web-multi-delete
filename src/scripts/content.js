@@ -1,9 +1,11 @@
 function addCheckboxesToConversationItems() {
     document.querySelectorAll('mws-conversation-list-item').forEach(item => {
-        const checkbox = document.createElement('input');
-        checkbox.type = 'checkbox';
-        checkbox.className = 'conversation-checkbox';
-        item.appendChild(checkbox);
+        if (!item.querySelector('.conversation-checkbox')) {
+	    const checkbox = document.createElement('input');
+	    checkbox.type = 'checkbox';
+	    checkbox.className = 'conversation-checkbox';
+	    item.appendChild(checkbox);
+        }
     });
 }
 
