@@ -37,7 +37,7 @@ function clickDelete() {
 function deleteConversationItem(conversationItem) {
     if (conversationItem) {
         conversationItem.click();
-        setTimeout(clickDelete, 250);
+        setTimeout(clickDelete, 500);
     } else {
         console.error("Conversation item not found!");
     }
@@ -55,7 +55,7 @@ function clickArchive() {
 function archiveConversationItem(conversationItem) {
     if (conversationItem) {
         conversationItem.click();
-        setTimeout(clickArchive, 250);
+        setTimeout(clickArchive, 500);
     } else {
         console.error("Conversation item not found!");
     }
@@ -71,7 +71,7 @@ function deleteSelectedConversationItems() {
     if (conversationItems.length) {
         console.log('Script started');
         index = 0;
-        intervalId = setInterval(deleteNextConversationItem, 1000);
+        intervalId = setInterval(deleteNextConversationItem, 1500);
     } else {
         console.log('No conversation items selected for deletion.');
     }
@@ -94,7 +94,7 @@ function archiveSelectedConversationItems() {
     if (conversationItems.length) {
         console.log('Script started');
         index = 0;
-        intervalId = setInterval(archiveNextConversationItem, 1500);
+        intervalId = setInterval(archiveNextConversationItem, 1000);
     } else {
         console.log('No conversation items selected for archival.');
     }
