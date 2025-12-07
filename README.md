@@ -7,6 +7,7 @@ Chrome Extension to enhance the functionality of **Google Messages for Web** by 
 1. **Create Check Box** : Inserts an checkbox next to each message for easy selection
 2. **Select All** : Marks the checkbox next to each message as checked
 3. **Delete Selected** : Deletes the messages where the checkbox is checked
+4. **Archive Selected** : Archives the messages where the checkbox is checked
 
 ## Installation
 
