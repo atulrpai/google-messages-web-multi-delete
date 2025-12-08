@@ -18,7 +18,7 @@ To install the extension, follow these steps :
 3. Go to the menu in the top right corner
 4. Choose "Extensions" > "Manage Extensions"
 5. Enable "Developer Mode" by toggling the switch in the top right corner
-6. Click on "Load unpacked" and select the folder containing the extension files
+6. Click on "Load Unpacked" and select the folder containing the extension files
 7. The extension should now be installed and visible in the list of extensions
 
 ## Usage
